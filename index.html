@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>Pathfinding Visualizer</title>
+        <link rel="icon" href="src/icon.jpg">
+        <meta charset="UTF-8" />
+        <link rel="stylesheet" type="text/css" href="./src/styles.css" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    </head>
+
+    <body>
+
+        <div class="top_container">
+
+            <div class="header">
+
+                <div class="header_title_div">
+                    <div class="title">
+                        <h1>Pathfinding Algorithms</h1>
+                    </div>
+    
+                    <div class="subtitle">
+                        <h3>Visualization & Comparison</h3>
+                    </div>
+
+                </div>
+
+                <div class="header_settings_div">
+
+                    <div class="slider_div">
+
+                        <div class="slider">
+                            <input type="range" id="node_number_input" class="range"
+                            min="50" max="1000" value="500" onchange="changeNodeNumber()">
+                            <div class="label">Node number</div>
+                        </div>
+                        
+                        <div class="slider">
+                            <input type="range" id="speed_slider" class="range"
+                            min="1" max="5" value="3" onchange="changeSpeed()">
+                            <div class="label">Animation Speed</div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <button id="refresh" class="refresh" onclick="refresh()"><i class="material-icons" style="font-size:30px;color:white">refresh</i></button>
+
+            </div>
+
+        </div>
+
+        <div class="main_container">
+
+            <div class="legend-container">
+
+                <div class="legend">
+                    <div class="legend_item"><div class="legend-node" style="background-color: #8CE937;"></div>Start Node</div>
+                    <div class="legend_item"><div class="legend-node" style="background-color: red;"></div>Goal Node</div>
+                    <div class="legend_item"><div class="legend-node"></div>Unexplored Node</div>
+                    <div class="legend_item"><div class="legend-node" style="background-color: #0C7692;"></div>Explored Node</div>
+                    <div class="legend_item"><div class="legend-node" style="background-color: gold;"></div>Path</div>
+                </div>
+
+                <div class="run_button_container">
+                    <button class="run_button"id="run_button" onclick="run_alg()">Run Breadth First Search</button>
+                    <select id="select_alg" onchange="change_run_button()">
+                        <option value="no_value" disabled>Algorithms</option>
+                        <option value="bfs">Breadth First Search</option>
+                        <option value="dfs">Depth First Search</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <noscript class="noscript">Please enable JavaScript to use the Pathfinding Visualizer.</noscript>
+
+            <div id="notification" id="notification"></div>
+
+            <div class="action_board">
+
+                <div id="board_container" class="board_container" id="board_container">
+                    <svg id="base_svg" class="board" id="board"></svg>
+                </div>
+
+                <div id="table_slider" onclick="toggleBoard()"><button id="chevron_button"><i  class="material-icons" id="slider-chevron">chevron_left</i></button></div>
+
+                <div id="table_div">
+
+                    <div id="info_text"></div>
+
+                    <table id="search_table">
+                        <tr>
+                            <th>Nodes Explored</th>
+                            <th>Path Length <br> (Number of Nodes)</th>
+                            <th>Path Length <br> (Distance between Nodes)</th>
+                        </tr>
+                   
+                        <tr>
+                            <th class="th2" colspan="3" onmouseover="change_info_text('bfs')" onclick="change_option_value('bfs')">Breadth First Search</th>
+
+                        <tr>
+                            <td id="bfs_ne">-</td>
+                            <td id="bfs_pln">-</td>
+                            <td id="bfs_pld">-</td>
+                        </tr>
+                        <tr>
+                            <th class="th2" colspan="3" onmouseover="change_info_text('dfs')" onclick="change_option_value('dfs')">Depth First Search</th>
+                        </tr>
+                        <tr>
+                            <td id="dfs_ne">-</td>
+                            <td id="dfs_pln">-</td>
+                            <td id="dfs_pld">-</td>
+                        </tr>
+            
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+        
+        <script src="src/index.js"></script>
+        <script src="src/bfs_and_dfs.js"></script>
+        <script src="src/animate.js"></script>
+        <script src="src/util.js"></script>
+
+    </body>
+
+</html>
